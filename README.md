@@ -15,5 +15,5 @@
 
 ### Running the Server
 - **python3 src/app_server.py**
-### Running the Client
-- **python3 src/client.py**
+### Testing the server
+- **telnet localhost 8080**
