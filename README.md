@@ -1,3 +1,4 @@
+# SERVER SCRIPT ---- PYTHON
 ## Project Setup
 
 ### Requirements
@@ -17,3 +18,9 @@
 - **python3 src/app_server.py**
 ### Testing the server
 - **telnet localhost 8080**
+
+``
+Type a string, it returns STRING EXIST if its
+present in the file else, it returns STRING NOT FOUND.
+You can you "test_string" to get STRING EXIST without randomly guessing
+``

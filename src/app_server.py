@@ -3,6 +3,7 @@ import threading
 import time
 import configparser
 import logging
+from typing import Any
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG, format='DEBUG: %(message)s')
@@ -16,7 +17,7 @@ class AppServer:
         self.config_file_path = "app_configuration.ini"
 
     @staticmethod
-    def load_configuration(file_path):
+    def load_configuration(file_path: str) -> Any:
         config = configparser.ConfigParser()
         config.read(file_path)
         return config['MAIN'].get('linuxpath'), config['MAIN'].getboolean('REREAD_ON_QUERY')
@@ -27,7 +28,7 @@ class AppServer:
                       f"seconds")
 
     @staticmethod
-    def search_string(file_path, search_string, reread_on_query):
+    def search_string(file_path: str, search_string: str, reread_on_query: bool) -> str:
         if reread_on_query:
             with open(file_path, 'r') as file:
                 for line in file:
@@ -39,7 +40,7 @@ class AppServer:
                 return "STRING EXISTS"
             return "STRING NOT FOUND"
 
-    def handling_client_connection(self, client_socket, file_path, reread_on_query):
+    def handling_client_connection(self, client_socket, file_path: str, reread_on_query: bool) -> None:
         try:
             while True:
                 data = client_socket.recv(1024).decode().strip()
@@ -54,7 +55,7 @@ class AppServer:
         finally:
             client_socket.close()
 
-    def start(self):
+    def start(self) -> None:
         file_path, reread_on_query = self.load_configuration(self.config_file_path)
         global cached_lines
         cached_lines = set()
