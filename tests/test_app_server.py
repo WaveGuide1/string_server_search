@@ -3,6 +3,8 @@ from src.app_server import AppServer
 
 
 class TestAppServer(unittest.TestCase):
+
+    # Test case
     def test_search_in_file(self):
         file_path = 'test_file.txt'
         with open(file_path, 'w') as file:
